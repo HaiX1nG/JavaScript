@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        let new_window = window.open('new.html','_blank','left=0,top=0,width=300,height=200')
+        let x = 15
+        let y = 8
+
+        function resizeWindow(){
+            new_window.moveBy(x,y)
+        }
+        setInterval(resizeWindow,200)
+
+        function closeWindow(){
+            if(new_window.closed){
+                console.log('窗口已经关闭')
+            }else{
+                console.log('窗口已经同步关闭')
+                new_window.close()
+            }
+        }
+
+    </script>
+    <a href="javascript:closeWindow()">关闭窗口</a>
+</body>
+</html>
