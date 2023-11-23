@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        #desk {
+            border: 1px solid grey;
+            width: 500px;
+            height: 200px;
+            position: relative;
+        }
+        #ball {
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            background-image: linear-gradient(blue, white, red);
+            position: absolute;
+            left: 0px;
+            top: 0px;
+        }
+        #ball.scrolling {
+            animation: scrolling 1s linear infinite;
+        }
+        @keyframes scrolling {
+            from{
+                transform: rotate(0deg);
+            }to {
+                transform: rotate(360deg);
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- 桌面 -->
+    <div id="desk">
+        <!-- 小球 -->
+        <div id="ball"></div>
+    </div>
+    <!-- 开始/暂停按钮 -->
+    <button id="btn-start">Start</button>
+    <button id="btn-pause">Pause</button>
+
+    <script>
+        const ball = document.getElementById('ball')
+        let x = 0, y = 0
+        let dx = 1, dy = 1
+        let timer
+
+        function move() {
+            x += dx
+            y += dy
+
+            if(x > 470 || x < 0) dx = -dx
+            if(y > 170 || y < 0) dy = -dy
+            ball.style.left = x + 'px'
+            ball.style.top = y + 'px'
+        }
+
+        function start() {
+            // 为了防止多次点击开始按钮而导致无法停止小球的运动
+            // 所以每次运行前添加一个清除计时器和css中的scrolling类
+            // 防止无法停止的情况出现
+            clearInterval(timer)
+            ball.classList.remove('scrolling')
+
+            timer = setInterval(move, 10)
+            ball.classList.add('scrolling')
+        }
+
+        function pause() {
+            clearInterval(timer)
+            ball.classList.remove('scrolling')
+        }
+
+        document.getElementById('btn-start').onclick = start
+        document.getElementById('btn-pause').onclick = pause
+    </script>
+</body>
+</html>
