@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>轮播图示范代码</title>
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+
+    .slider {
+      width: 560px;
+      height: 400px;
+      overflow: hidden;
+    }
+
+    .slider-wrapper {
+      width: 100%;
+      height: 320px;
+    }
+
+    .slider-wrapper img {
+      width: 100%;
+      height: 100%;
+      display: block;
+    }
+
+    .slider-footer {
+      height: 80px;
+      background-color: rgb(100, 67, 68);
+      padding: 12px 12px 0 12px;
+      position: relative;
+    }
+
+    .slider-footer .toggle {
+      position: absolute;
+      right: 0;
+      top: 12px;
+      display: flex;
+    }
+
+    .slider-footer .toggle button {
+      margin-right: 12px;
+      width: 28px;
+      height: 28px;
+      appearance: none;
+      border: none;
+      background: rgba(255, 255, 255, 0.1);
+      color: #fff;
+      border-radius: 4px;
+      cursor: pointer;
+    }
+
+    .slider-footer .toggle button:hover {
+      background: rgba(255, 255, 255, 0.2);
+    }
+
+    .slider-footer p {
+      margin: 0;
+      color: #fff;
+      font-size: 18px;
+      margin-bottom: 10px;
+    }
+
+    .slider-indicator {
+      margin: 0;
+      padding: 0;
+      list-style: none;
+      display: flex;
+      align-items: center;
+    }
+
+    .slider-indicator li {
+      width: 8px;
+      height: 8px;
+      margin: 4px;
+      border-radius: 50%;
+      background: #fff;
+      opacity: 0.4;
+      cursor: pointer;
+    } 
+    /* 设置li_n类方便更改li的样式 */
+    .slider-indicator li.li_n {
+    width: 9px;
+    height: 9px;
+    background: #fff;
+    opacity: 1;
+    }
+    
+
+  </style>
+</head>
+
+<body>
+  <div class="slider">
+    <div class="slider-wrapper">
+      <img src="./img/R-C (0).jpg" alt="" id="img" />
+    </div>
+    <div class="slider-footer">
+      <p id="text">对人类来说会不会太超前了？</p>
+      <ul class="slider-indicator">
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+      </ul>
+      <div class="toggle">
+        <!-- 按钮切换图片的功能在作业中没提到我就注释掉了 -->
+        <!-- <button class="prev">&lt;</button>
+        <button class="next">&gt;</button> -->
+      </div>
+    </div>
+  </div>
+  
+  <script>
+    // 老师上课时讲的思路:
+    let changeStyle = [{
+        url: './img/R-C (0).jpg',
+        bgColor: 'rgba(169, 169, 169, 0.75)',
+        text: '第一张图片的标题'
+    },
+    {
+        url: './img/R-C (1).jpg',
+        bgColor: 'rgba(135, 206, 250, 0.8)',
+        text: '第二张图片的标题'
+    },
+    {
+        url: './img/R-C (2).jpg',
+        bgColor: 'rgba(95, 158, 160, 0.8)',
+        text: '第三张图片的标题'
+    },
+    {
+        url: './img/R-C (3).jpg',
+        bgColor: 'rgba(47, 79, 79, 0.75)',
+        text: '第四张图片的标题'
+    },
+    {
+        url: './img/R-C (4).jpg',
+        bgColor: 'rgba(255, 165, 0, 0.8)',
+        text: '第五张图片的标题'
+    },
+    {
+        url: './img/R-C (5).jpg',
+        bgColor: 'rgba(60, 179, 144, 0.8)',
+        text: '第六张图片的标题'
+    },
+    {
+        url: './img/R-C (6).jpg',
+        bgColor: 'rgba(176, 196, 222, 0.8)',
+        text: '第七张图片的标题'
+    },
+    {
+        url: './img/R-C (7).jpg',
+        bgColor: 'rgba(95, 158, 160, 0.8)',
+        text: '第八张图片的标题'
+    }
+]
+    // 课上的基础知识点:
+    let img = document.getElementById('img')
+    let sliderFooter = document.querySelector('.slider-footer')
+    let p = document.getElementById('text')
+    let lis = document.querySelectorAll('.slider-indicator li')
+
+    let i = Math.floor(Math.random() * 8)
+
+    img.src = changeStyle[i].url
+    sliderFooter.style.background = changeStyle[i].bgColor
+    p.innerHTML = changeStyle[i].text
+
+    //遍历移除所有li元素的li_n类
+    for (let j = 0; j < lis.length; j++) {
+    lis[j].classList.remove('li_n')
+    }
+    // 为当前索引对应的li元素添加或者移除li_n类
+    lis[i].classList.toggle('li_n')
+  </script>
+
+</body>
+
+</html>

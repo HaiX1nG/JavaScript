@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>轮播图完整版</title>
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+
+    .slider {
+      width: 560px;
+      height: 400px;
+      overflow: hidden;
+    }
+
+    .slider-wrapper {
+      width: 100%;
+      height: 320px;
+    }
+
+    .slider-wrapper img {
+      width: 100%;
+      height: 100%;
+      display: block;
+    }
+
+    .slider-footer {
+      height: 80px;
+      background-color: rgb(100, 67, 68);
+      padding: 12px 12px 0 12px;
+      position: relative;
+    }
+
+    .slider-footer .toggle {
+      position: absolute;
+      right: 0;
+      top: 12px;
+      display: flex;
+    }
+
+    .slider-footer .toggle button {
+      margin-right: 12px;
+      width: 28px;
+      height: 28px;
+      appearance: none;
+      border: none;
+      background: rgba(255, 255, 255, 0.1);
+      color: #fff;
+      border-radius: 4px;
+      cursor: pointer;
+    }
+
+    .slider-footer .toggle button:hover {
+      background: rgba(255, 255, 255, 0.2);
+    }
+
+    .slider-footer p {
+      margin: 0;
+      color: #fff;
+      font-size: 18px;
+      margin-bottom: 10px;
+    }
+
+    .slider-indicator {
+      margin: 0;
+      padding: 0;
+      list-style: none;
+      display: flex;
+      align-items: center;
+    }
+
+    .slider-indicator li {
+      width: 8px;
+      height: 8px;
+      margin: 4px;
+      border-radius: 50%;
+      background: #fff;
+      opacity: 0.4;
+      cursor: pointer;
+    }
+    
+    .slider-indicator li.li_n {
+      width: 9px;
+      height: 9px;
+      background: #fff;
+      opacity: 1;
+    }
+    
+
+  </style>
+</head>
+
+<body>
+  <div class="slider">
+    <div class="slider-wrapper">
+      <img src="./img/R-C (0).jpg" alt="" id="img"/>
+    </div>
+    <div class="slider-footer">
+      <p id="text">对人类来说会不会太超前了？</p>
+      <ul class="slider-indicator">
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+      </ul>
+      <div class="toggle">
+        <button class="prev">&lt;</button>
+        <button class="next">&gt;</button>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    let changeStyle = [{
+        url: './img/R-C (0).jpg',
+        bgColor: 'rgba(169, 169, 169, 0.75)',
+        text: '第一张图片的标题'
+    },
+    {
+        url: './img/R-C (1).jpg',
+        bgColor: 'rgba(135, 206, 250, 0.8)',
+        text: '第二张图片的标题'
+    },
+    {
+        url: './img/R-C (2).jpg',
+        bgColor: 'rgba(95, 158, 160, 0.8)',
+        text: '第三张图片的标题'
+    },
+    {
+        url: './img/R-C (3).jpg',
+        bgColor: 'rgba(47, 79, 79, 0.75)',
+        text: '第四张图片的标题'
+    },
+    {
+        url: './img/R-C (4).jpg',
+        bgColor: 'rgba(255, 165, 0, 0.8)',
+        text: '第五张图片的标题'
+    },
+    {
+        url: './img/R-C (5).jpg',
+        bgColor: 'rgba(60, 179, 144, 0.8)',
+        text: '第六张图片的标题'
+    },
+    {
+        url: './img/R-C (6).jpg',
+        bgColor: 'rgba(176, 196, 222, 0.8)',
+        text: '第七张图片的标题'
+    },
+    {
+        url: './img/R-C (7).jpg',
+        bgColor: 'rgba(95, 158, 160, 0.8)',
+        text: '第八张图片的标题'
+    }
+]
+
+    let img = document.getElementById('img')
+    let sliderFooter = document.querySelector('.slider-footer')
+    let p = document.getElementById('text')
+    let lis = document.querySelectorAll('.slider-indicator li')
+    let i = 0;
+
+    function changeImage() {
+      img.src = changeStyle[i].url
+      sliderFooter.style.backgroundColor = changeStyle[i].bgColor
+      p.innerHTML = changeStyle[i].text
+
+      for (let j = 0; j < lis.length; j++) {
+        lis[j].classList.remove('li_n')
+      }
+      lis[i].classList.toggle('li_n')
+    }
+    // 这里必须先调用,不然会出现
+    // 打开网页.slider-footer的背景颜色没切换
+    // p标签里的内容没修改的BUG
+    changeImage()
+
+    function nextImage() {
+      i = (i + 1) % changeStyle.length
+      changeImage()
+    }
+
+    function prevImage() {
+      i = (i - 1 + changeStyle.length) % changeStyle.length
+      changeImage()
+    }
+
+    document.querySelector('.next').addEventListener('click', nextImage)
+    document.querySelector('.prev').addEventListener('click', prevImage)
+
+    let intervalId = setInterval(nextImage, 3000)
+
+    // 如果需要停止定时器，可以使用 clearInterval(intervalId);
+  </script>
+  
+</body>
+
+</html>
