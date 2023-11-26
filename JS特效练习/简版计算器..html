@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>简易计算器</title>
+    <style>
+        #res {
+            color: brown;
+        }
+    </style>
+</head>
+<body>
+    <div>
+        <input type="text" placeholder="请输入第一个数字" id="num1" value="" />
+
+        <select name="Operator" id="Operator">
+            <option value="+">+</option>
+            <option value="-">-</option>
+            <option value="*">*</option>
+            <option value="/">/</option>
+            <option value="%">%</option>
+        </select>
+
+        <input type="text" placeholder="请输入第二个数字" id="num2" value="" />
+        <input type="button" value="计算结果" id="btn">
+    </div>
+    <p id="res">请输入要运算的数</p>
+
+    <script>
+        // 注册按钮点击事件
+        document.getElementById('btn').onclick = function (){
+            let num1 = document.getElementById('num1').value
+            let num2 = document.getElementById('num2').value
+            let Operator = document.getElementById('Operator').value
+            let res = 'Error:'
+            let flag = true
+
+            if(num1 == ""){
+                res += "第一个数字不能为空"
+                flag = false
+            }else {
+                num1 = parseFloat(num1)
+                if (isNaN(num1)){
+                    flag = false
+                    res += '&nbsp;第一个运算元不是有效数字&nbsp;'
+                }
+            }
+
+            if(num2 == ""){
+                res += "第二个数字不能为空"
+                flag = false
+            }else{
+                num2 = parseFloat(num2)
+                if (isNaN(num2)){
+                    flag = false
+                    res += '&nbsp;第二个运算元不是有效数字&nbsp;'
+                }
+            }
+
+
+
+        if(flag){
+            switch(Operator){
+                case '+': res = "运算结果:"+num1+'+'+num2+'='+(num1+num2)
+                break
+                case '-': res = "运算结果:"+num1+'-'+num2+'='+(num1-num2)
+                break
+                case '*': res = "运算结果:"+num1+'*'+num2+'='+(num1*num2)
+                break
+                case '/':
+                    if(num2==0) {
+                        res = '除数不能为0'
+                    }else {
+                        res = "运算结果:"+num1+'/'+num2+'='+(num1/num2)
+                    }
+                break
+
+                case '%':
+                    if(num2==0) {
+                            res = '除数不能为0'
+                        }else {
+                            res = "运算结果:"+num1+'%'+num2+'='+(num1%num2)
+                        }
+                break
+            }
+        }
+
+            document.getElementById('res').innerHTML = res
+        }
+    </script>
+</body>
+</html>
