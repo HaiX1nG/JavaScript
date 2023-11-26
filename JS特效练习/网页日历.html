@@ -12,6 +12,7 @@
         #data {
             width: 280px;
             border: 1px solid #000;
+            border-radius: 2%;
             margin: 20px auto;
         }
         #data > p {
@@ -25,6 +26,9 @@
         }
         #prevMonth, #nextMonth {
             cursor: pointer;
+        }
+        #prevMonth:hover, #nextMonth:hover {
+            color: red;
         }
         #year {
             flex: 1;
@@ -45,20 +49,21 @@
         #date {
             overflow: hidden;
             list-style: none;
+            border: 2px solid rgba(0, 0, 0, 0.25);
         }
         #date > li {
             float: left;
             width: 34px;
             height: 34px;
             margin: 1px 1px;
-            border: 2px solid rgba(0, 0, 0, 0);
+            border: 2px solid rgba(0, 0, 0, 0.25);
             line-height: 34px;
             text-align: center;
             cursor: pointer;
         }
         #date > .hover:hover {
             border: 2px solid red;
-            border-radius: 50%;
+            border-radius: 25%;
         }
         .active {
             color: red;
@@ -74,13 +79,13 @@
         </p>
         <h5 id="Month"></h5>
         <ul id="title">
-            <li>日</li>
+            <li style="color: red;">日</li>
             <li>一</li>
             <li>二</li>
             <li>三</li>
             <li>四</li>
             <li>五</li>
-            <li>六</li>
+            <li style="color: red;">六</li>
         </ul>
         <ul id="date">
 
