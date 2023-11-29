@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        * {
+            margin: 0px;
+            padding: auto;
+        }
+        
+        html, body {
+        height: 100%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        margin: 0;
+        }
+
+        #center-box {
+        text-align: center;
+        border: 2px solid #000;
+        border-radius: 2%;
+        padding: 5px;
+        }
+
+        .checkbox > input[type="checkbox"] {
+            margin: 5px;
+            padding: 5px;
+        }
+    </style>
+</head>
+<body>
+    <div id="center-box">
+    <form action="#" method="post" id="register">
+        <fieldset style="width: 300px;height: auto;">
+            <legend style="text-align: center;"><b>Register</b></legend>
+            <b>Username: </b><input type="text" name="username" id="username" value="" autocomplete="username" /><br /><br />
+            <b>Password: </b><input type="password" name="password" id="password" value="" autocomplete="current-password" /><br /><br />
+            <b>again:&nbsp;&nbsp;&nbsp;&nbsp;</b><input type="password" name="re-password" id="re-password" value="" autocomplete="current-password" /><br /><br />
+        </fieldset>
+        <fieldset style="width: 300px;height: auto;">
+            <legend style="text-align: center;"><b>Account information</b></legend>
+            <b>Nickname: </b><input type="text" name="nickname" id="nickname" value="" /><br /><br />
+            <p style="display: inline;">Gender:</p>
+            <input type="radio" name="gender" id="man" value="male" style="display: inline;"/>
+            <label for="man">男</label>
+            <input type="radio" name="gender" id="woman" value="female" style="display: inline;"/>
+            <label for="man">女</label><br /><br />
+
+            <fieldset style="height: auto;">
+                <legend><b>Hobby</b></legend>
+                <div class="checkbox">
+                <input type="checkbox" name="hobby" id="2D">
+                <label for="2D">AGE</label>
+                <input type="checkbox" name="hobby" id="music">
+                <label for="music">音乐</label>
+                <input type="checkbox" name="hobby" id="MoviesAndTVShows">
+                <label for="MoviesAndTVShows">影视</label><br>
+                <input type="checkbox" name="hobby" id="HomeDance">
+                <label for="HomeDance">宅舞</label>
+                <input type="checkbox" name="hobby" id="paint">
+                <label for="paint">绘画</label>
+                <input type="checkbox" name="hobby" id="other">
+                <label for="other">其他</label>
+                </div>
+            </fieldset>
+            <br />
+            <p style="display: inline;">Location:</p>
+            <select name="location" id="location" style="display: inline;">
+                <option value="">==请选择所在地==</option>
+                <option value="">南昌</option>
+                <option value="">九江</option>
+                <option value="">赣州</option>
+                <option value="">吉安</option>
+            </select><br /><br />
+            <input type="submit" name="btn-register" id="btn-register" value="注册" />
+            <input type="submit" name="btn-reset" id="btn-reset" value="重置" />
+    </form>
+    </div>
+</body>
+</html>
