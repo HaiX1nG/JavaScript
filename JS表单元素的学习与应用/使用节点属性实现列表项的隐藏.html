@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        a {
+            text-decoration: none;
+            color: black;
+        }
+    </style>
+</head>
+<body>
+    <ul id="lists">
+        <li>轻轻的我走了,<a href="#">隐藏</a></li>
+        <li>正如我轻轻地来;<a href="#">隐藏</a></li>
+        <li>我轻轻的招手,<a href="#">隐藏</a></li>
+        <li>作别西天的云彩.<a href="#">隐藏</a></li>
+        <li>那河畔的金柳,<a href="#">隐藏</a></li>
+        <li>是夕阳中的新娘;<a href="#">隐藏</a></li>
+        <li>波光里的艳影,<a href="#">隐藏</a></li>
+        <li>在我心头荡漾.<a href="#">隐藏</a></li>
+    </ul>
+
+    <script>
+        // 获取所有的a标签
+        let aes = document.getElementsByTagName('a')
+        for(i = 0; i < aes.length; i++){
+            // 遍历添加点击事件绑定到所有的a标签上
+            aes[i].onclick = function (){
+                // 隐藏被点击链接所在的列表项
+                this.parentNode.style.display = 'none'
+            }
+        }
+    </script>
+</body>
+</html>
