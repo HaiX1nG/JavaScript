@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div id="box1">
+        <ul id="ul">
+            <li>我是第一个</li>
+            <li>我是第二个</li>
+            <li>我是第三个</li>
+        </ul>
+    </div>
+    <div id="box2">
+
+    </div>
+    <button id="addButton">复制节点</button>
+    <button id="delButton">删除最后一个节点</button>
+    <script>
+        const box1 = document.getElementById('box1')
+        const box2 = document.getElementById('box2')
+        let ul = document.getElementById('ul')
+        let btn1 = document.getElementById('addButton')
+        let btn2 = document.getElementById('delButton')
+
+        btn1.onclick = function (){
+            let ulall = ul.cloneNode(true)
+            box2.appendChild(ulall)
+        }
+        
+        btn2.onclick = function (){
+            if(ul.children.length == 0){
+                alert('已经没有可以删除的元素了')
+            }else {
+                ul.removeChild(ul.children[ul.children.length-1])
+            }
+        }
+    </script>
+</body>
+</html>
