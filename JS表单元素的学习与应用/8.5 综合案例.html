@@ -25,17 +25,14 @@
         }
 
         div {
-            width: 400px;
-            margin: 5px auto;
-            padding: 20px;
+            width: 380px;
+            margin: 50px auto;
             padding-left: 20px;
-            border: 2px solid #000;
-            border-radius: 10%;
+            border: 1px solid #000;
         }
 
-        legend {
-            text-align: center;
-            border: 2px solid #000;
+        h4 {
+            padding: 20px 0px;
         }
 
         div table {
@@ -46,44 +43,8 @@
             text-decoration: none;
         }
     </style>
-    <script type="text/javascript">
-        // 获取a所在的行
-        function del() {
-            // 这里this表示当前所点击的那个超链接
-            let tr = this.parentNode.parentNode
-            // 获取当前要删除员工的名字
-            let name = tr.getElementsByTagName("td")[0].innerHTML
-            // confirm有返回值,确认为true,取消为false
-            let flag = confirm("确定要删除"+name+"吗?")
-            if(flag){
-                // tr.parentNode表示所属的表格对象
-                tr.parentNode.removeChild(tr)
-            }
-        }
-
-        window.onload = function () {
-            let alla = document.getElementsByTagName('a');
-            for(let i = 0; i < alla.length; i++){
-                alla[i].onclick = del;
-            }
-            
-            let btn = document.getElementById('addButton');
-            btn.onclick = function () {
-                let name = document.getElementById('empName').value;
-                let telephone = document.getElementById('telephone').value;
-                let salary = document.getElementById('salary').value;
-
-                let tr = document.createElement('tr');
-                tr.innerHTML = '<td>'+name+'</td>'+'<td>'+telephone+'</td>'+'<td>'+salary+'</td><td><a href="#">删除</a></td>';  // 修正拼写错误
-                let a = tr.getElementsByTagName('a')[0];
-                a.onclick = del;
-                let employeeTb = document.getElementById('employeeTable');
-                employeeTb.appendChild(tr);
-            }
-        }
-    </script>
-</head>
-<body>
+    </head>
+    <body>
     <table id="employeeTable" border="1px solid">
         <tr>
             <th>姓名</th>
@@ -110,8 +71,8 @@
     </table>
 
     <div>
-        <fieldset>
-            <legend><h4>添加新员工</h4></legend>
+        <h4>添加新员工</h4>
+        <form>
             <table>
                 <tr>
                     <td>姓名: </td>
@@ -132,7 +93,38 @@
                     </td>
                 </tr>
             </table>
-        </fieldset>
+        </form>
     </div>
+    <script>
+        function del() {
+            let tr = this.parentNode.parentNode
+            let name = tr.getElementsByTagName('td')[0].innerHTML
+            let flag = confirm('确认要删除'+name+'吗?')
+            if(flag) {
+                tr.parentNode.removeChild(tr)
+            }
+        }
+
+        window.onload = function () {
+            let alla = document.getElementsByTagName('a')
+            for(let i = 0; i < alla.length; i++){
+                alla[i].onclick = del
+            }
+            
+            let btn = document.getElementById('addButton')
+            btn.onclick = function () {
+                let name = document.getElementById('empName').value
+                let telephone = document.getElementById('telephone').value
+                let salary = document.getElementById('salary').value
+
+                let tr = document.createElement('tr')
+                tr.innerHTML = '<td>'+name+'</td>'+'<td>'+telephone+'</td>'+'<td>'+salary+'</td><td><a href="#">删除</a></td>'
+                let a = tr.getElementsByTagName('a')[0]
+                a.onclick = del
+                let employeeTb = document.getElementById('employeeTable')
+                employeeTb.appendChild(tr)
+            }
+        }
+    </script>
 </body>
 </html>
