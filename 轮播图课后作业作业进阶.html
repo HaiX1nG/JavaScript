@@ -166,8 +166,10 @@
     let p = document.getElementById('text')
     let lis = document.querySelectorAll('.slider-indicator li')
     let i = 0;
+    let intervalId
 
-    function changeImage() {
+    function changeImage(index) {
+      i = index
       img.src = changeStyle[i].url
       sliderFooter.style.backgroundColor = changeStyle[i].bgColor
       p.innerHTML = changeStyle[i].text
@@ -175,29 +177,49 @@
       for (let j = 0; j < lis.length; j++) {
         lis[j].classList.remove('li_n')
       }
-      lis[i].classList.toggle('li_n')
+      lis[i].classList.add('li_n')
     }
     // 这里必须先调用,不然会出现
     // 打开网页.slider-footer的背景颜色没切换
     // p标签里的内容没修改的BUG
-    changeImage()
+    changeImage(0)
 
     function nextImage() {
       i = (i + 1) % changeStyle.length
-      changeImage()
+      changeImage(i)
     }
 
     function prevImage() {
       i = (i - 1 + changeStyle.length) % changeStyle.length
-      changeImage()
+      changeImage(i)
     }
 
     document.querySelector('.next').addEventListener('click', nextImage)
     document.querySelector('.prev').addEventListener('click', prevImage)
 
-    let intervalId = setInterval(nextImage, 3000)
+    intervalId = setInterval(nextImage, 2500)
 
     // 如果需要停止定时器，可以使用 clearInterval(intervalId);
+    img.addEventListener('mouseover',function(){
+      clearInterval(intervalId)
+    })
+
+    img.addEventListener('mouseout', function(){
+      intervalId = setInterval(nextImage, 2500)
+    })
+
+    for (let i = 0; i < lis.length; i++) {
+      lis[i].onclick = function() {
+        changeImage(i)
+      }
+      lis[i].onmouseover = function(){
+        clearInterval(intervalId)
+        changeImage(i)
+      }
+      lis[i].onmouseout = function(){
+        intervalId = setInterval(nextImage,2500)
+      }
+    }
   </script>
   
 </body>
