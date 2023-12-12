@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        * {
+            margin: 0px;
+            padding: 0px;
+        }
+
+        #all {
+            width: 350px;
+            height: auto;
+            margin: 15% auto;
+            box-shadow: 10px 5px 5px #00000023;
+        }
+        
+        #top {
+            display: flex;
+            flex-direction: row;
+            justify-content: space-between;
+            border: 1px solid #00000023;
+            border-radius: 4px 4px 0 0;
+            width: 350px;
+            height: 35px;
+            margin: auto;
+            background-color: rgb(234, 234, 239);
+        }
+
+        #boxMaster {
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+        }
+
+        .boxTab {
+            padding: 5px;
+            margin: 5px;
+        }
+        #moren:hover {
+            background-color: antiquewhite;
+        }
+        #home:hover {
+            background-color: rgb(252, 207, 207);
+        }
+
+        #msg:hover {
+            background-color: rgb(240, 240, 169);
+        }
+
+        #more:hover {
+            background-color: rgb(172, 240, 172);
+        }
+
+        #footer {
+            border: 1px solid #00000023;
+            border-radius: 0 0 4px 4px;
+            background-color: #fefcf6;
+            width: 350px;
+            height: 150px;
+            margin: auto;
+        }
+
+        #icon {
+            display: flex;
+            justify-content:space-around;
+            align-items: center;
+            width: 90px;
+            height: 35px;
+        }
+
+        .icon-box {
+            width: 15px;
+            height: 15px;
+            border-radius: 50%;
+        }
+
+        #red {
+            background-color: #fc625d;
+        }
+        #yellow {
+            background-color: #fdbc40;
+        }
+        #green {
+            background-color: #35cd4b;
+        }
+
+        #red:hover {
+            background-color: #fc312a;
+        }
+        #yellow:hover {
+            background-color: #f4aa20;
+        }
+        #green:hover {
+            background-color: #08b421;
+        }
+
+        .tabcontent {
+            display: none;
+        }
+
+    </style>
+</head>
+<body>
+
+<div id="all">
+    <div id="top">
+        <div id="icon">
+            <div id="red" class="icon-box"></div>
+            <div id="yellow" class="icon-box"></div>
+            <div id="green" class="icon-box"></div>
+        </div>
+
+        <div id="boxMaster">
+            <div id="moren" class="boxTab" onmouseover="tabChange('tab0')">简介</div>
+            <div id="home" class="boxTab" onmouseover="tabChange('tab1')">首页</div>
+            <div id="msg" class="boxTab" onmouseover="tabChange('tab2')">信息</div>
+            <div id="more" class="boxTab" onmouseover="tabChange('tab3')">更多</div>
+        </div>
+    </div>
+    <div id="footer">
+        <div id="tab0" class="tabcontent" style="display: block;">
+            <h1>仿MacOS Tab栏</h1>
+            <p>我个人比较喜欢MacOS的ui风格</p>
+        </div>
+
+        <div id="tab1" class="tabcontent">
+            <h3>这里是首页</h3>
+            <p>这里是tab1</p>
+        </div>
+
+        <div id="tab2" class="tabcontent">
+            <h3>这里是信息</h3>
+            <p>这里是tab2</p>
+        </div>
+
+        <div id="tab3" class="tabcontent">
+            <h3>这里是更多</h3>
+            <p>这里是tab3</p>
+        </div>
+    </div>
+</div>
+
+    <script>
+        function tabChange(tabName) {
+            var i, tabcontent
+
+            tabcontent = document.getElementsByClassName('tabcontent')
+            for (i = 0; i < tabcontent.length; i++) {
+                tabcontent[i].style.display = 'none'
+            }
+
+            document.getElementById(tabName).style.display = 'block'
+        }
+    </script>
+
+</body>
+</html>
