@@ -100,6 +100,14 @@
         .tabcontent {
             display: none;
         }
+        div > a {
+            text-decoration: none;
+            color: #000000;
+        }
+        div > a.active {
+            color: #fc625d;
+            border-bottom: 2px solid #fc312a;
+        }
 
     </style>
 </head>
@@ -114,10 +122,10 @@
         </div>
 
         <div id="boxMaster">
-            <div id="moren" class="boxTab">简介</div>
-            <div id="home" class="boxTab">首页</div>
-            <div id="msg" class="boxTab">信息</div>
-            <div id="more" class="boxTab">更多</div>
+            <div id="moren" class="boxTab"><a class="active" href="#">简介</a></div>
+            <div id="home" class="boxTab"><a href="#">首页</a></div>
+            <div id="msg" class="boxTab"><a href="#">信息</a></div>
+            <div id="more" class="boxTab"><a href="#">更多</a></div>
         </div>
     </div>
     <div id="footer">
@@ -144,12 +152,19 @@
 </div>
 
     <script>
-        function tabChange(tabName) {
-            const boxMaster = document.querySelector('#boxMaster')
-            boxMaster.addEventListener('mouseover', function (e) {
-                
-            })
-        }
+        
+        let aes = document.querySelectorAll('a')
+        let tabContent = document.querySelectorAll('.tabcontent')
+        document.getElementById('boxMaster').addEventListener('click', function(e) {
+            for(let i = 0; i < aes.length; i++){
+                aes[i].classList.remove('active')
+                tabContent[i].style.display = 'none'
+            }
+            e.target.classList.add('active')
+            let i = Array.from(aes).indexOf(e.target)
+            tabContent[i].style.display = 'block'
+        })
+
     </script>
 </body>
 </html>
