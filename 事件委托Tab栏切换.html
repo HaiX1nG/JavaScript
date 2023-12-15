@@ -114,10 +114,10 @@
         </div>
 
         <div id="boxMaster">
-            <div id="moren" class="boxTab" onmouseover="tabChange('tab0')">简介</div>
-            <div id="home" class="boxTab" onmouseover="tabChange('tab1')">首页</div>
-            <div id="msg" class="boxTab" onmouseover="tabChange('tab2')">信息</div>
-            <div id="more" class="boxTab" onmouseover="tabChange('tab3')">更多</div>
+            <div id="moren" class="boxTab">简介</div>
+            <div id="home" class="boxTab">首页</div>
+            <div id="msg" class="boxTab">信息</div>
+            <div id="more" class="boxTab">更多</div>
         </div>
     </div>
     <div id="footer">
@@ -145,14 +145,10 @@
 
     <script>
         function tabChange(tabName) {
-            var i, tabcontent
-
-            tabcontent = document.getElementsByClassName('tabcontent')
-            for (i = 0; i < tabcontent.length; i++) {
-                tabcontent[i].style.display = 'none'
-            }
-
-            document.getElementById(tabName).style.display = 'block'
+            const boxMaster = document.querySelector('#boxMaster')
+            boxMaster.addEventListener('mouseover', function (e) {
+                
+            })
         }
     </script>
 </body>
