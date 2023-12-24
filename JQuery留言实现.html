@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="./lib/jquery-3.4.1.js"></script>
+    <title>Document</title>
+    <style>
+        * {
+            margin: 0px;
+            padding: 0px;
+        }
+
+        #top {
+            display: flex;
+            flex-direction: row;
+            justify-content: space-between;
+            border: 1px solid #00000023;
+            border-radius: 4px 4px 0 0;
+            width: 100%;
+            height: 35px;
+            margin: auto;
+            background-color: rgb(234, 234, 239);
+        }
+
+        #content {
+            border: 1px solid #00000023;
+            border-radius: 0 0 4px 4px;
+            background-color: #fefcf6;
+            width: 100%;
+            height: 665px;
+            margin: auto;
+        }
+
+        #icon {
+            display: flex;
+            justify-content:space-around;
+            align-items: center;
+            width: 90px;
+            height: 35px;
+        }
+
+        .icon-box {
+            width: 15px;
+            height: 15px;
+            border-radius: 50%;
+        }
+
+        #red {
+            background-color: #fc625d;
+        }
+        #yellow {
+            background-color: #fdbc40;
+        }
+        #green {
+            background-color: #35cd4b;
+        }
+
+        #red:hover {
+            background-color: #fc312a;
+        }
+        #yellow:hover {
+            background-color: #f4aa20;
+        }
+        #green:hover {
+            background-color: #08b421;
+        }
+
+        #message-board {
+            display: flex;
+            flex-direction: column;
+            width: 50%;
+            height: 200px;
+            margin: auto;
+            margin-top: 10px;
+        }
+
+        #message-board>span {
+            font-size: 12px;
+            color: rgba(0, 0, 0, 0.5);
+            text-align: right;
+        }
+
+        #send {
+            border-radius: 5px;
+            border: none;
+            width: 100%;
+            height: 45px;
+            background-color: rgba(0, 119, 255, 0.5);
+            font-size: 20px;
+            color: aliceblue;
+        }
+
+        #send:hover {
+            border-radius: 5px;
+            box-shadow: #00000031 0 0 10px;
+            border: none;
+            width: 100%;
+            height: 45px;
+            background-color: rgba(0, 119, 255, 1);
+            font-size: 20px;
+            color: aliceblue;
+        }
+
+        #comment {
+            display: flex;
+            flex-direction: column;
+            border: 1px solid #000;
+            border-radius: 4px;
+            width: 50%;
+            height: auto;
+            margin: auto;
+            margin-top: 10px;
+            overflow: auto;
+            word-wrap: break-word;
+        }
+
+        li {
+            list-style: none;
+        }
+
+        #message-board>span.active {
+            color: red;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+<div id="top">
+    <div id="icon">
+        <div id="red" class="icon-box"></div>
+        <div id="yellow" class="icon-box"></div>
+        <div id="green" class="icon-box"></div>
+    </div>
+</div>
+<div id="content">
+    <div id="message-board">
+        <textarea name="message" id="message" cols="30" rows="10" maxlength="200" placeholder="请留下您宝贵的评论吧~"></textarea>
+        <span>0/200</span>
+        <button id="send">发送</button>
+    </div>
+    <div id="comment">
+        <ul>
+
+        </ul>
+    </div>
+</div>
+
+    <script>
+        $(document).ready(function(){
+            $('#message').on('input', function(){
+                let textValues = $(this).val()
+                let textLength = textValues.length
+                $('#message-board span').text(textLength+'/200')
+                if(textLength == 200){
+                    $('#message-board span').addClass('active')
+                }else {
+                    $('#message-board span').removeClass('active')
+                }
+            })
+
+            $('#send').on('click', function(){
+                let textValues = $('#message').val()
+                if(textValues.trim() != ""){
+                    let commentItem = $('<li>').text("HaiX1nG:"+textValues)
+                        let del = $('<a>').attr('href', '#').text('删除')
+                            del.on('click', function(){
+                                $(this).parent().remove()
+                            })
+                        commentItem.append(del)
+                        commentItem.append('<hr>')
+                        $('ul').append(commentItem)
+                        $('#message').val('')
+                        $('#message-board span').text('0/200')
+                }
+            })
+        })
+    </script>
+</body>
+</html>
