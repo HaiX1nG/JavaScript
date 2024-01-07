@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    div {
+      width: 80px;
+      height: 80px;
+      margin-top: 10px;
+      border: 1px solid #000;
+      background-color: brown;
+      position: absolute;
+      text-align: center;
+      border-radius: 50%;
+      line-height: 80px;
+    }
+  </style>
+</head>
+<body>
+  <button>动画执行</button>
+  <div id="box">Run!</div>
+
+<script src="./lib/jquery-3.4.1.js"></script>
+<script>
+  $().ready(function(){
+    $('button').on('click', function(){
+      $('#box').animate({
+        left: "+=200px",
+      }, 1000,function(){
+        $('#box').animate({
+          top: "+=150px",
+          opacity: 0.8
+        }, 1000, function(){
+          $('#box').animate({
+            top: "-=145px"
+          }, 1000, function(){
+            console.log("动画执行完毕")
+          })
+        })
+      })
+    })
+  })
+</script>
+</body>
+</html>

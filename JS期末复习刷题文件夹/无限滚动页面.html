@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <style>
+    #content {
+      height: 300px;
+      overflow-y: scroll;
+    }
+
+    #loading {
+      display: none;
+      text-align: center;
+      padding: 10px;
+      background-color: #f1f1f1;
+    }
+  </style>
+</head>
+<body>
+  <div id="content">
+    <p>内容1</p>
+    <p>内容2</p>
+    <p>内容3</p>
+    <p>内容4</p>
+    <p>内容5</p>
+    <p>内容6</p>
+    <p>内容7</p>
+    <p>内容8</p>
+    <p>内容9</p>
+    <p>内容10</p>
+    <div id="loading">加载中...</div>
+  </div>
+
+  <script>
+    const content = document.getElementById('content')
+    const loading = document.getElementById('loading')
+
+    content.addEventListener('scroll', function() {
+      if (content.scrollTop + content.clientHeight >= content.scrollHeight) {
+        loading.style.display = 'block'
+        setTimeout(function() {
+          // 模拟加载更多内容的异步操作
+          const newContent = document.createElement('p')
+          newContent.textContent = '更多内容'
+          content.appendChild(newContent)
+          loading.style.display = 'none'
+        }, 2000)
+      }
+    })
+  </script>
+</body>
+</html>

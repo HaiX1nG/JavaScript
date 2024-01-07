@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <script>
+    function replaceVowelsWithUpperCase(str) {
+      let vowels = ['a', 'e', 'i', 'o', 'u']
+      let result = ''
+
+      for (let char of str){
+        if (vowels.includes(char.toLowerCase())) {
+          result += char.toUpperCase()
+        }else {
+          result += char
+        }
+      }
+      return result
+    }
+
+    console.log(replaceVowelsWithUpperCase('hello world!'))
+  </script>
+</body>
+</html>

@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    #nav-wrap {
+      background-color: #333;
+      padding: 10px;
+    }
+
+    #nav {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      color: #fff;
+    }
+
+    #nav ul {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+      display: flex;
+    }
+
+    #nav ul li {
+      position: relative;
+      margin-right: 20px;
+    }
+
+    #nav ul li a {
+      color: #fff;
+      text-decoration: none;
+    }
+
+    .list {
+      display: none;
+      position: absolute;
+      top: 100%;
+      left: 0;
+      background-color: #333;
+      padding: 10px;
+      z-index: 999;
+    }
+
+    .list li {
+      margin-bottom: 5px;
+    }
+
+    .nav:hover .list {
+      display: block;
+    }
+  </style>
+</head>
+<body>
+  <div id="nav-wrap">
+    <div id="nav">
+      <ul>
+        <li class="nav">
+          <a href="#">一级菜单</a>
+        </li>
+        <li class="nav">
+          <a href="#">一级菜单</a>
+        </li>
+        <li class="nav">
+          <a href="#">一级菜单</a>
+          <ul class="list">
+            <li><a href="#">二级菜单</a></li>
+            <li><a href="#">二级菜单</a></li>
+            <li><a href="#">二级菜单</a></li>
+            <li><a href="#">二级菜单</a></li>
+          </ul>
+        </li>
+        <li class="nav">
+          <a href="#">一级菜单</a>
+          <ul class="list">
+            <li>
+              <a href=""></a>
+            </li>
+            <li>
+              <a href=""></a>
+            </li>
+          </ul>
+        </li>
+      </ul>
+    </div>
+  </div>
+  
+  <script src="./lib/jquery-3.4.1.js"></script>
+  <script>
+    $(document).ready(function(){
+      $('.nav').hover(function(){
+        $(this).find('.list').stop().slideDown();
+      }, function(){
+        $(this).find('.list').stop().slideUp();
+      });
+    });
+  </script>
+</body>
+</html>

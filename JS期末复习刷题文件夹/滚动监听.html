@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <style>
+    #section1 {
+      height: 500px;
+      background-color: #f1f1f1;
+    }
+
+    #section2 {
+      height: 500px;
+      background-color: #ccc;
+    }
+
+    #section3 {
+      height: 500px;
+      background-color: #f1f1f1;
+    }
+
+    .animate {
+      opacity: 0;
+      transition: opacity 1s ease-in-out;
+    }
+
+    .animate.show {
+      opacity: 1;
+    }
+  </style>
+</head>
+<body>
+  <div id="section1"></div>
+  <div id="section2"></div>
+  <div id="section3"></div>
+
+  <script>
+    const section1 = document.getElementById('section1')
+    const section2 = document.getElementById('section2')
+    const section3 = document.getElementById('section3')
+
+    window.addEventListener('scroll', function() {
+      const section1Top = section1.offsetTop
+      const section2Top = section2.offsetTop
+      const section3Top = section3.offsetTop
+
+      const scrollPosition = window.scrollY + window.innerHeight
+
+      if (scrollPosition >= section1Top && scrollPosition < section2Top) {
+        section1.classList.add('animate', 'show')
+      } else {
+        section1.classList.remove('show')
+      }
+
+      if (scrollPosition >= section2Top && scrollPosition < section3Top) {
+        section2.classList.add('animate', 'show')
+      } else {
+        section2.classList.remove('show')
+      }
+
+      if (scrollPosition >= section3Top) {
+        section3.classList.add('animate', 'show')
+      } else {
+        section3.classList.remove('show')
+      }
+    })
+  </script>
+</body>
+</html>

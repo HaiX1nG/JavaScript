@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <style>
+    .column {
+      float: left;
+      width: 300px;
+      margin-right: 20px;
+    }
+
+    .item {
+      margin-bottom: 20px;
+      background-color: #f1f1f1;
+      padding: 10px;
+    }
+  </style>
+</head>
+<body>
+  <div id="container"></div>
+
+  <script>
+    const container = document.getElementById('container')
+    const columnCount = 3 // 列数
+    const itemsPerLoad = 10 // 每次加载的元素数量
+    let itemCount = 0
+
+    function createItem() {
+      const item = document.createElement('div')
+      item.className = 'item'
+      item.textContent = '元素 ' + (itemCount + 1)
+      return item
+    }
+
+    function createColumns() {
+      for (let i = 0; i < columnCount; i++) {
+        const column = document.createElement('div')
+        column.className = 'column'
+        container.appendChild(column)
+      }
+    }
+
+    function getColumnHeight() {
+      const columns = Array.from(container.getElementsByClassName('column'))
+      const columnHeights = columns.map(column => column.offsetHeight)
+      return Math.min(...columnHeights)
+    }
+
+    function addItems() {
+      const columns = Array.from(container.getElementsByClassName('column'))
+
+      for (let i = 0; i < itemsPerLoad; i++) {
+        const item = createItem()
+        const column = columns[i % columnCount]
+        column.appendChild(item)
+        itemCount++
+      }
+    }
+
+    function handleScroll() {
+      if (window.innerHeight + window.scrollY >= document.body.offsetHeight) {
+        addItems()
+      }
+    }
+
+    window.addEventListener('load', function() {
+      createColumns()
+      addItems()
+    });
+    window.addEventListener('scroll', handleScroll)
+  </script>
+</body>
+</html>

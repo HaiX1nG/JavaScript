@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <style>
+    #dragElement {
+      width: 100px;
+      height: 100px;
+      background-color: red;
+      position: absolute;
+      left: 0;
+      top: 0;
+      cursor: move;
+    }
+  </style>
+</head>
+<body>
+  <div id="dragElement"></div>
+
+  <script>
+    const dragElement = document.getElementById('dragElement')
+    let offsetX = 0
+    let offsetY = 0
+    let isDragging = false
+
+    dragElement.addEventListener('mousedown', function(e) {
+      isDragging = true
+      offsetX = e.clientX - dragElement.offsetLeft
+      offsetY = e.clientY - dragElement.offsetTop
+    })
+
+    document.addEventListener('mousemove', function(e) {
+      if (isDragging) {
+        dragElement.style.left = (e.clientX - offsetX) + 'px'
+        dragElement.style.top = (e.clientY - offsetY) + 'px'
+      }
+    })
+
+    document.addEventListener('mouseup', function() {
+      isDragging = false
+    })
+  </script>
+</body>
+</html>

@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <style>
+    #countdown {
+      font-size: 24px;
+      text-align: center;
+    }
+  </style>
+</head>
+<body>
+  <div id="countdown">倒计时: <span id="timer">10</span> 秒</div>
+
+  <script>
+    const timerElement = document.getElementById('timer')
+    let countdown = 10
+
+    function updateTimer() {
+      timerElement.textContent = countdown
+      countdown--
+
+      if (countdown < 0) {
+        clearInterval(interval);
+        timerElement.textContent = '倒计时结束'
+      }
+    }
+
+    const interval = setInterval(updateTimer, 1000)
+  </script>
+</body>
+</html>

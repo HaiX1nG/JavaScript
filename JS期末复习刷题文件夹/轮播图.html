@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    .slideshow {
+      width: 500px;
+      height: 300px;
+      overflow: hidden;
+    }
+
+    .slideshow img {
+      width: 300px;
+      height: 100%;
+      object-fit: cover;
+    }
+  </style>
+</head>
+<body>
+  <div class="slideshow">
+    <img src="../img/img1.jpg" alt="image 1">
+    <img src="../img/img2.jpg" alt="image 2">
+    <img src="../img/img3.jpg" alt="image 3">
+  </div>
+
+  <script>
+    const slideshow = document.querySelector('.slideshow')
+    const images = slideshow.getElementsByTagName('img')
+    let currentIndex = 0
+
+    function showImage(index) {
+      for (let i = 0; i < images.length; i++){
+        images[i].style.display = 'none'
+      }
+      images[index].style.display = 'block'
+    }
+
+    function nextImage() {
+      currentIndex++
+      if (currentIndex >= images.length){
+        currentIndex = 0
+      }
+      showImage(currentIndex)
+    }
+
+    setInterval(nextImage, 3000)
+  </script>
+</body>
+</html>

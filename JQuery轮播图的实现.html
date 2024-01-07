@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    #sld {
+      position: relative;
+      width: 600px;
+      height: 400px;
+      margin: 0 auto;
+      overflow: hidden;
+    }
+
+    .sld_list {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+      width: 100%;
+      height: 100%;
+      position: relative;
+    }
+
+    .sld_list li {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      display: none;
+    }
+
+    .sld_list li:first-child {
+      display: block;
+    }
+
+    .sld_list img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    #arr {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      width: 40px;
+      height: 40px;
+      background-color: rgba(0, 0, 0, 0.5);
+      color: #fff;
+      text-align: center;
+      line-height: 40px;
+      font-size: 24px;
+      text-decoration: none;
+      opacity: 0.7;
+      transition: opacity 0.3s;
+    }
+
+    #arr:hover {
+      opacity: 1;
+    }
+
+    #arr.prev {
+      left: 10px;
+    }
+
+    #arr.next {
+      right: 10px;
+    }
+  </style>
+</head>
+<body>
+  <div id="sld">
+    <ul class="sld_list">
+      <li><img src="./img/img1.jpg" alt=""></li>
+      <li><img src="./img/img2.jpg" alt=""></li>
+      <li><img src="./img/img3.jpg" alt=""></li>
+      <li><img src="./img/img4.jpg" alt=""></li>
+      <li><img src="./img/img5.jpg" alt=""></li>
+    </ul>
+    <a href="#" id="arr" class="prev">&lt;</a>
+    <a href="#" id="arr" class="next">&gt;</a>
+  </div>
+
+  <script src="./lib/jquery-3.4.1.js"></script>
+  <script>
+    $(document).ready(function(){
+      let currentIndex = 0
+      let slideCount = $('.sld_list li').length
+
+      function showSlide(index) {
+        $('.sld_list li').fadeOut()
+        $('.sld_list li').eq(index).fadeIn()
+      }
+
+      function nextSlide() {
+        currentIndex++;
+        if (currentIndex >= slideCount) {
+          currentIndex = 0
+        }
+        showSlide(currentIndex)
+      }
+
+      function prevSlide() {
+        currentIndex--;
+        if (currentIndex < 0) {
+          currentIndex = slideCount - 1;
+        }
+        showSlide(currentIndex)
+      }
+
+      $('.next').on('click', function(e){
+        e.preventDefault()
+        nextSlide()
+      })
+
+      $('.prev').on('click', function(e){
+        e.preventDefault()
+        prevSlide()
+      })
+
+      setInterval(function(){
+        nextSlide()
+      }, 3000)
+    })
+  </script>
+</body>
+</html>

@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    <script src="./lib/jquery-3.4.1.js"></script>
     <style>
         * {
             margin: 0px;
@@ -101,6 +102,10 @@
             display: none;
         }
 
+        .active {
+            display: block;
+        }
+
     </style>
 </head>
 <body>
@@ -114,14 +119,14 @@
         </div>
 
         <div id="boxMaster">
-            <div id="moren" class="boxTab" onmouseover="tabChange('tab0')">简介</div>
-            <div id="home" class="boxTab" onmouseover="tabChange('tab1')">首页</div>
-            <div id="msg" class="boxTab" onmouseover="tabChange('tab2')">信息</div>
-            <div id="more" class="boxTab" onmouseover="tabChange('tab3')">更多</div>
+            <div id="moren" class="boxTab">简介</div>
+            <div id="home" class="boxTab">首页</div>
+            <div id="msg" class="boxTab">信息</div>
+            <div id="more" class="boxTab">更多</div>
         </div>
     </div>
     <div id="footer">
-        <div id="tab0" class="tabcontent" style="display: block;">
+        <div id="tab0" class="tabcontent active">
             <h1>仿MacOS Tab栏</h1>
             <p>我个人比较喜欢MacOS的ui风格</p>
         </div>
@@ -142,19 +147,14 @@
         </div>
     </div>
 </div>
-
-    <script>
-        function tabChange(tabName) {
-            let i, tabcontent
-
-            tabcontent = document.getElementsByClassName('tabcontent')
-            for (i = 0; i < tabcontent.length; i++) {
-                tabcontent[i].style.display = 'none'
-            }
-
-            document.getElementById(tabName).style.display = 'block'
-        }
-    </script>
-
+<script>
+  $(document).ready(function(){  
+    $('.boxTab').on('click', function(){  
+        var tabName = $(this).attr('id').replace('box', 'tab');  
+        $('.tabcontent').removeClass('active').hide();  
+        $('#' + tabName).addClass('active').show();  
+    });  
+});
+</script>
 </body>
 </html>

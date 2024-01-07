@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <style>
+    .container {
+      position: relative;
+      width: 400px;
+    }
+
+    .image {
+      width: 100%;
+      height: auto;
+    }
+
+    .zoom {
+      position: absolute;
+      border: 1px solid #ccc;
+      width: 200px;
+      height: 200px;
+      display: none;
+      overflow: hidden;
+    }
+
+    .zoom img {
+      width: 100%;
+      height: auto;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <img class="image" src="../img/img1.jpg" alt="图片">
+
+    <div class="zoom"></div>
+  </div>
+
+  <script>
+    const container = document.querySelector('.container')
+    const image = document.querySelector('.image')
+    const zoom = document.querySelector('.zoom')
+
+    container.addEventListener('mousemove', function(e) {
+      const containerRect = container.getBoundingClientRect()
+      const x = e.clientX - containerRect.left
+      const y = e.clientY - containerRect.top
+
+      const zoomSize = 200
+      const zoomRect = zoom.getBoundingClientRect()
+      const zoomX = (x / containerRect.width) * (zoomRect.width - zoomSize)
+      const zoomY = (y / containerRect.height) * (zoomRect.height - zoomSize)
+
+      zoom.style.backgroundImage = `url(${image.src})`
+      zoom.style.backgroundPosition = `-px -px`
+      zoom.style.display = 'block'
+    });
+
+    container.addEventListener('mouseleave', function() {
+      zoom.style.display = 'none'
+    })
+  </script>
+</body>
+</html>
